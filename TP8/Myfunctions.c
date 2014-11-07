@@ -9,7 +9,7 @@ int countWord(char filename[]) {
 	int i = -1; // Compensation pour la dernière lecture nulle
 	do {
 		strcpy(currentword,"");
-		fscanf(f, "%s\n",currentword);
+		fscanf(f, "%s",currentword);
 		i++;		
 	}while (strcmp(currentword,"") != 0);
 	return i;
@@ -18,23 +18,30 @@ int countWord(char filename[]) {
 int randomN(int max) {
 	max ++;
 	srand(time(NULL));
-	printf("%d",rand());
 	return rand() % max;
 }
 
-char* SearchWord(char* filename, int wordline) {
-
+char* searchWord(char* filename, int wordline) {
+	char* foundword;
+	char currentword[30] = "";
 	FILE* f = fopen(filename, "r");
 	if(f==NULL) return NULL;
-	char currentword[30] = "";
 	int i = 0;
 	do { // Pas de protection pour dépassement de fichier
 		i++;
 		strcpy(currentword,"");
-		fscanf(f, "%s\n",currentword);
+		fscanf(f, "%s",currentword);
 	}while (i != wordline);
-	char foundword[] = "toto";
+
+	foundword = malloc(strlen(currentword)+1);
+	strcpy(foundword,currentword);
 	return foundword;
 }
 
-//char* CreateWord(char* content
+char* randomWordInFile(char* filename){
+	int wordCount = countWord(filename);
+	int randomNumber = randomN(wordCount);
+	char* randomWord;
+	randomWord = searchWord(filename,randomNumber);
+	return randomWord;	
+}

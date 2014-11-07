@@ -4,8 +4,10 @@
 #include "Myfunctions.h"
 
 int main() {
-	printf("longeur %d\n",strlen(SearchWord("francais.txt",200))); // normalement "abattis"
-	printf("Word : %s \n",SearchWord("francais.txt",200));
+	char* foundword;
+	foundword = searchWord("francais.txt",200);
+	printf("longeur %zu\n",strlen(foundword)); // normalement "abattis"
+	printf("Word : %s \n",foundword);
 	return 0;
 }
 
