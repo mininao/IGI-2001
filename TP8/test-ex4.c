@@ -10,5 +10,6 @@ int main() {
 	randomWord = searchWord("francais.txt",randomNumber);
 	printf("Word : %s \n",randomWord);
 	printf("longeur %zu\n",strlen(randomWord));
+	printf("Longeur max : %d\n", maxSizeInFile("francais.txt"));
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "Myfunctions.h"
 
 void printGuessedWord(char* guessedWord, int wordLength);

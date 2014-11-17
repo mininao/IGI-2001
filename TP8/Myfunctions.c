@@ -45,3 +45,18 @@ char* randomWordInFile(char* filename){
 	randomWord = searchWord(filename,randomNumber);
 	return randomWord;	
 }
+
+int maxSizeInFile(char* filename) {
+	char currentword[30] = "";
+	FILE* f = fopen(filename, "r");
+	if(f==NULL) return NULL;
+	int max = 0;
+	do { // Pas de protection pour dépassement de fichier
+		strcpy(currentword,"");
+		fscanf(f, "%s",currentword);
+		if(strlen(currentword) > max) max = strlen(currentword);
+		//printf(":%s: 	%d\n", currentword,max);
+	}while (!feof(f));
+
+	return max;
+}
