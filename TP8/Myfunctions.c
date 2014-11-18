@@ -60,3 +60,31 @@ int maxSizeInFile(char* filename) {
 
 	return max;
 }
+
+int* Histogram(char* filename) {
+	int* histo = malloc((maxSizeInFile(filename) + 1 )* sizeof(int));
+	histo[0] = maxSizeInFile(filename);
+	char currentword[30] = "";
+	int currentLength;
+	FILE* f = fopen(filename, "r");
+	if(f==NULL) return NULL;	
+	while (!feof(f)) { // Pas de protection pour dépassement de fichier
+		strcpy(currentword,"");
+		fscanf(f, "%s",currentword);
+		currentLength = strlen(currentword);
+		if(currentLength > 0) histo[currentLength] ++;
+
+	};	
+	return histo;
+}
+
+void saveHisto(char* fileIn, char* fileOut) {
+	int* histo = Histogram(fileIn);
+	int i;
+    FILE *f;
+    f = fopen(fileOut, "w");	
+	for (i = 1; i < histo[0] + 1; ++i)
+	{
+		fprintf(f, "%d\t%d\n", i, histo[i]);
+	}
+}
